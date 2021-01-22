@@ -1,0 +1,13 @@
+<div class="question">{% qes %}</div>
+<form method="post">
+    {% sestok %}
+    <input type="hidden" name="ansr" value="{% ansr %}">
+    <input type="hidden" name="qesr" value="{% qesr %}">
+    <input type="hidden" name="anst" value="{% anst %}">
+    <input type="hidden" name="qest" value="{% qest %}">
+    <div class="answers">
+        {% anss %}
+        <button type="submit">Check</button>
+    </div>
+    <script src="/audio.js" defer></script>
+</form>

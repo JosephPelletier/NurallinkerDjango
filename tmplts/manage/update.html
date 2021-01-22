@@ -1,0 +1,18 @@
+<div class="update">
+    <h2>Update {% linker %}</h2>
+    <p>By uploading you agree to licence your work under <a target="_blank" class="elink"
+        href="https://www.gnu.org/licenses/gpl-3.0.en.html">The GNU GPL v3</a> or affirm that the work is from this site</p>
+    <p class="err">{% err %}</p>
+    <form method="post" enctype="multipart/form-data">
+        {% sestok %}
+        <label for="flinker">Select your linker's zip file</label><br>
+        <input type="file" id="flinker" name="zip" required>
+        <input type="submit" value="Upload">
+    </form>
+</div>
+<div class="example">
+    <p>
+    If you have no idea what to upload, <a class="elink" href="/g/Joe/Notes">download</a> this <a class="elink" href="/l/Joe/Notes">example</a>
+    to use as a template, and check out the <a class="elink" href="/docs">docs</a> for more information
+    </p>
+</div>

@@ -1,0 +1,23 @@
+<h1>Nurallinker login</h1>
+<h3>Login or create your account.</h3>
+<br>
+<form method="post">
+    <div class="login">
+        {% sestok %}
+        <input type="hidden" name="cpasswd" value="{% cpasswd %}">
+        <label for="uname" class="err">{% uerr %}</label>
+        <label for="uname">Username</label>
+        <br>
+        <input type="text" maxlength="32" id="uname" placeholder="Username" value="{% uname %}" name="uname" required>
+        <br>
+        <br>
+        <label for="passwd" class="err">{% perr %}</label>
+        <label for="passwd" class="pcon">{% pcon %}</label>
+        <label for="passwd">Password</label>
+        <br>
+        <input type="password" id="passwd" placeholder="Password" name="passwd" required>
+        <br>
+        <br>
+        <button type="submit">Login</button>
+    </div>
+</form>

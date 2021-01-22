@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% title %}</title>
+    <link rel="stylesheet" href="/theme.css">
+</head>
+<body>
+
+    <div id="top-bar">
+    <div id="nav-box">
+        <h3 id="title">Nurallinker</h3>
+        <a class="navlink" href="/">Browse</a>
+        <a class="navlink" href="/manage">Manage</a>
+        <a class="navlink" href="/about">About</a>
+        <a class="navlink" href="/docs">Docs</a>
+        <a class="navlink" id="uname" href="/u/{% uname %}">{% uname %}</a>
+        <a class="navlink" id="logout" href="/logout">{% logout %}</a>
+    </div>
+    </div>
+    <div id="page">
+    {% page %}
+    </div>
+</body>
+</html>

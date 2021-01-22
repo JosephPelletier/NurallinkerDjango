@@ -1,0 +1,11 @@
+<form method="post">
+    {% sestok %}
+    <div class="create">
+        <label for="linker" class="err">{% cerr %}</label>
+        <input type="text" id="linker" name="linker" placeholder="New linker name" maxlength="32" required>
+        <button type="submit">Create</button>
+    </div>
+</form>
+<div class="linkers">
+    {% linkers %}
+</div>

@@ -1,0 +1,22 @@
+# linker example
+# this is a comment, nurallinker will ignore lines starting with '#'
+# if you add any new lines they have to start with '#'
+# the only thing you should change in this example file is
+# swapping a + for - to disable an option on the option table
+
+# row q is question
+# row a is answer
+# row c is chose; the number of choices (2-9)
+# column i is image
+# column a is audio
+# column t is text
+# column o is open-ended
+# + is on - is off
+
+# i a t o
+q + - +
+a + - + +
+c 3 0 3
+
+# this next line is the description
+d Animals example linker

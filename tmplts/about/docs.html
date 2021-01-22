@@ -1,0 +1,330 @@
+<h1>Docs</h1>
+<div class="doc">
+    <h2>Navigation</h2>
+    <p>
+        The nav-bar is visible on every page except error responses.<br>
+        It has 4 primary buttons:
+        <ul>
+            <li>'Browse' browse linkers by everyone on the platform. See <a href="#browse">browsing</a>.</li>
+            <li>'Manage' manage your own linkers. See <a href="#management">management</a>.</li>
+            <li>'About' read about the purpose of Nurallinker</li>
+            <li>'Docs' read technical information about Nurallinker</li>
+        </ul>
+        If you are logged-in you will also see these buttons:
+        <ul>
+            <li>(Username) browse linkers made by you as another user would see them</li>
+            <li>'Logout' which logs-you-out</li>
+        </ul>
+    </p>
+</div>
+<div class="doc" id="browse">
+    <h2>Browsing</h2>
+    <p>
+        The Browse section lets you see all the linkers made by everyone on the platform. On each linker you will see
+        its name, its author's name, and its description. By clicking a button on the liner you can start it or download
+        it so you can modify and re-upload it as your own, but please do credit the uploader in
+        the description of your upload. You may also click the name of the uploader of the linker to see everything
+        they've uploaded.
+    </p>
+</div>
+<div class="doc">
+    <h2>Using a linker</h2>
+    <p>
+        Click the name of the linker or click the 'Start' button to start practicing.
+    </p>
+    <p>
+        You will be shown a question in the
+        form of text image or sound, you will have to click the 'Play' button to hear the sound. If you have disabled
+        javascript you will have to use your browser's built in audio controls, if you don't know that that means then you
+        can safely ignore it.
+    </p>
+    <p>
+        You will also be given a choice of a few answers, there can be 2 to 9 choices. The answer choices can be text,
+        image, or sound; or the answer can be open ended, in this case you will have to recall the text answer from memory
+        and enter it. To select an answer just click it, clicking the 'Play' button on an audio answer will not select it,
+        but clicking anywhere else on an audio answer will select it. When an answer is selected the circle belonging to
+        it will be filled. Once you are satisfied with your answer click the 'Check' button to check your answer, if you
+        click the 'Check' button without selecting or entering an answer the question will be skipped and counted as wrong.
+    </p>
+    <p>
+        Then you click the 'Check' button you will be show the results page. You will see the following things in the following order.
+        <ol>
+            <li>The question you were asked</li>
+            <li>The result; Correct, Incorrect, or Skipped</li>
+            <li>The correct answer for the question you were asked</li>
+        </ol>
+        You will not be shown the answer you choose if it was wrong, that won't help you remember the right answer.
+        From this page click next to be shown another question.
+    </p>
+    <p>
+        There is not a set duration for a linker, the number of questions you are asked is a combination of how well
+        you are doing, how many questions the linker has, and the randomness of what question you are asked. See
+        <a class="mono" href="#question-generation">Question generation</a> and <a href="#mastery">Mastery</a>
+        for more on this.
+    </p>
+    <p>
+        You may user more than one linker at once and even close them without losing your progress, but there is no
+        guarantee your progress will be saved day to day (this may change in the future, probably when we add a progress
+        measure to the check page)
+    </p>
+</div>
+<div class="doc" id="question-generation">
+    <h2 class="mono">Question generation</h2>
+    <p class="mono">
+        Questions are generated with the help of sudo-random numbers, firstly a bit is generated, based on this bit the
+        question generator either selects the question or the correct answer. Each possible question, and each possible
+        answer has an integer weight called its 'odds'. The odds control how likely a particular question or answer is
+        to be selected, if question 'A' has odds 1 and question 'B' has odds 3, question 'B' is three times more likely
+        to be selected than question 'A'. The same is true if it were answer 'A' and 'B' instead of question 'A' and 'B'
+    </p>
+    <p class="mono">
+        When a question is answered correctly the odds number of the asked question and the correct answer are decreased
+        by one, likewise when a question is answered incorrectly or is skipped the odds number of the asked question and
+        the correct answer are increased by one; this increases the chance that it will be seen again as a question, and
+        the chance it will again be the correct answer. The odds number starts at 2 and is not aloud to fall bellow 1.
+        When the odds humber on every question and every answer is 1 the the linker is mastered. See <a href="#mastery">Mastery</a>
+        for more info on mastery.
+    </p>
+</div>
+<div class="doc" id="mastery">
+    <h2>Mastery</h2>
+    <p>
+        When it seems that you are reliably getting every question right you will see a page telling you that you have
+        mastered the linker, at this point you probably don't need to study any more for now, but you may continue by
+        clicking the name of the linker or by clicking the word 'here'. When you see this page you progress on the
+        linker will be reset so that you can use it again without being shown the mastery page immediately.
+    </p>
+    <p>
+        For technical information on when exactly mastery occurs see
+        <a class="mono" href="#question-generation">Question generation</a>
+    </p>
+</div>
+<div class="doc">
+    <h2>Loging-in</h2>
+    <p>
+        To get to the <a href="/login">login page</a> click 'Manage' on the nav-bar while logged-out.
+        To log-in or create an account enter a username and password then click the 'Login' button.
+        Usernames may not begin with a dot or contain a forward slash. If the account name is available to be created
+        you will be prompted to confirm the password for the new account and
+        if the passwords match you will be logged-into the newly created account.
+    </p>
+    <p class="mono">
+        The login page is made to be error tolerant, if the user types an invalid username or incorrect password an
+        error message will appear above the problematic field.
+    </p>
+    <p class="mono">
+        Passwords are not stored, what is stored is the sha256 digest of the concatenation of the username with a
+        forward slash with the password `sha256(uname .. '/' .. passwd)`. Since the forward slash is not aloud in
+        usernames this authentication string is guaranteed to me unique and thus it is astronomically unlikely that two
+        authentication hashes are the same. This makes these passwords useless to an attacker who has stolen them from
+        the server to the extent to which they are too strong to be brute forced. Since all auth strings are unique no
+        matching password attack can be preformed to identify passwords. The system maintains that brute force is the
+        only possible attack. Many site designers skip over good security and store your passwords in one form or
+        another in order to authenticate you. When you log-in to this site your auth-string is produced, hashed, and
+        immediately discarded, if the hash matches the one stored on the server, then you, beyond any reasonable doubt
+        know your password, and so, you are aloud to log-in.
+    </p>
+</div>
+<div class="doc" id="management">
+    <h2>Management</h2>
+    <p>
+        The <a href="/manage">manage page</a> can be accessed by clicking the 'Manage' button on the nav-bar.
+        Here you will see a list of linkers you've uploaded and at the top of the page there is a field where you can enter
+        the name of a new linker, upon clicking create you will be directed to the <a href="#update">update page</a> for
+        this linker where you can upload it.
+    </p>
+    <p>
+        For each linker you've uploaded there are three buttons
+         <ol>
+            <li>Update; allows you to re-upload</li>
+            <li>Download; allows you to download your linker for modification</li>
+            <li>Delete; removes your linker from the site</li>
+        </ol>
+        You may also click the linker name to start using it.
+    </p>
+</div>
+<div class="doc" id="update">
+    <h2>Update</h2>
+    <p>
+        The update page allows you to upload or re-upload your linker as a zip file, it is accessed from the
+        <a href="/manage">manage page</a> via the create button or via the
+        'Update' button on one of your existing linkers
+    </p>
+    <p>
+        When you upload your linker you agree to <a href="#licence">the licence</a> or affirm that your work comes from
+        this site.
+    </p>
+    <p>
+        Before you upload your linker you should check that it meets <a href="#requirements">the requirements</a>,
+        because fixing one error at a time using the error messages has the potential to be quite painful for you,
+        we don't recommend it.
+    </p>
+    <p>
+        If you fail to meet a <a href="#requirements">requirement</a> you will see an error above the file choose button.
+    </p>
+</div>
+<div class="doc" id="licence">
+    <h2>Licence</h2>
+    <p>
+        By uploading your work to this site you agree to licence it under <a target="_blank" class="elink"
+        href="https://www.gnu.org/licenses/gpl-3.0.en.html">The GNU GPL v3</a> or affirm that the work is from this site.
+        This license makes your work, provided it is really yours, free and open source. That means that anyone can make
+        improvements on your work even when you are no longer able to. If you upload the work of another user, be sure
+        to credit them.
+    </p>
+</div>
+
+<div class="doc" id="settings">
+    <h2>Linker Settings</h2>
+    <p>
+        The linker settings allow you to customise your linkers description, what types of questions and answers are
+        enabled or disabled, and how many multiple choice options will be given for a given answer type.
+    </p>
+    <p>
+        nurallinker will ignore lines starting with '#', these lines are called comments.
+        if you add any lines they have to start with '#'
+        the rows that control the settings do not start with '#'
+    </p>
+    <p>
+        the settings are organized as a grid, the rows are q (question), a (answer), c (choose)
+        and the columns are i (image), a (audio), t (text), o (open)
+    </p>
+    <ul>
+        for settings that are switches + is enabled, - is disabled
+        <li>row q is for question switches, it controls what question types are enabled, + is enabled, - is disabled, there are 3 question switches: i, a, t</li>
+        <li>row a is for answer switches, it controls what question types are enabled, there are 4 answer switches: i, a, t, o</li>
+        <li>row c is for choose numbers, instead of a + or - for on or off you place a single digit from 2 to 9, that will be the
+        number of choices given for the corresponding answer type. If the type is disabled place a 0 or - in place of the digit for readability</li>
+        <li>column i is for the image question/answer type</li>
+        <li>column a is for the audio question/answer type</li>
+        <li>column t is for the text question/answer type</li>
+        <li>column o is for the open-ended question/answer type, open ended is a text answer but the user types it, no
+        choices are given.</li>
+        <li>row d holds the decription of the linker as it shows up on the browse page.</li>
+        While the order of the rows is flexible, the order of the columns is not
+    </ul>
+    <p class="mono">
+        # this is an example settings file<br>
+        # i a t o <br>
+        q + - + <br>
+        a + + + - <br>
+        c 3 0 3 <br>
+        d this is an example linker
+    </p>
+</div>
+<div class="doc" id="identifiers">
+    <h2>Identifiers</h2>
+    <p>
+        Identifiers map questions to answers and vice versa. The part of the file name before the first dot is the
+        identifier. For example, 'dog.sitting.png' would match with 'dog.txt' and 'dog.barking.mp3' because they all
+        have the identifier 'dog'.
+    </p>
+</div>
+<div class="doc" id="requirements">
+    <h2>Linker Requirements</h2>
+    <p>
+        If a linker requirement is not satisfied, an <a href="#update-error">update error</a> occurs
+    </p>
+    <ul>
+        <li>text, image, and audio directories, as well as the settings.txt file, must me at the root of the zip</li>
+        <li>No extra file or directory may be at the root of the zip</li>
+        <li>You may only include files in the aloud formats for any directory in the linker<br>
+            Aloud formats:
+            <ul>
+                <li>text: .txt</li>
+                <li>image: .jpeg, .jpg, .png</li>
+                <li>audio: .mp3</li>
+            </ul>
+        </li>
+        <li>Every enabled question must have a corresponding answer in each enabled answer type</li>
+        <li>Every enabled answer must have a corresponding question in each enabled question type</li>
+        <li>choose <a href="#settings">setting</a> for any given answer type must be less or equal to the amount of
+            answers identifiers for the answer type</li>
+        <li>the q <a href="#settings">setting</a> should have exactly 3 switches: i, a, t; - or +</li>
+        <li>the a <a href="#settings">setting</a> should have exactly 4 switches: i, a, t, o; - or +</li>
+        <li>the c <a href="#settings">setting</a> should have exactly 3 digits: i, a, t; from 2 to 9</li>
+        <li>the q, a, c, and d <a href="#settings">setting</a> must all be present</li>
+    </ul>
+</div>
+<div class="doc" id="update-errors">
+    <h2>Update errors</h2>
+    <p>
+        Update errors occur when a <a href="#requirements">linker requirement</a> is not satisfied, and appears on the
+        <a href="#update">update page</a> above the file choose button.
+    </p>
+    <h3>[text/image/audio/settings.txt] is not present, it should be at the root of the zip</h3>
+    <p>
+        If you get this error chances are when you created the zip file you selected the folder of the linker instead of
+        selecting the files in the folder of the linker. Try again but this time just select text, image, audio, and
+        settings.txt then create the zip.
+    </p>
+    <h3>{file} should not be in the zip</h3>
+    <p>
+        This error occurs when an extra file is present in the zip root. There should be three directories: 'text',
+        'image', and 'audio' and a 'settings.txt' file and nothing else.
+    </p>
+    <h3>[text/image/audio] should be a directory</h3>
+    <p>
+        This occurs if you've made a file called 'text', 'image', or 'audio'; these should be folders not files.
+    </p>
+    <h3>settings.txt should be a file</h3>
+    <p>
+        This occurs if you've made a folder called settings.txt, this should be a file not a folder.
+    </p>
+    <h3>[text/image/audio] format not allowed: .{format}</h3>
+    <p>
+        Aloud formats:
+        <ul>
+            <li>text: .txt</li>
+            <li>image: .jpeg, .jpg, .png</li>
+            <li>audio: .mp3</li>
+        </ul>
+
+    </p>
+    <h3>{identifier} is a question but is not a [text/image/audio] answer</h3>
+    <p>
+        Every enabled question must have a corresponding answer in each enabled answer type.
+    </p>
+    <h3>{id} is an answer but is not a [text/image/audio] question</h3>
+    <p>
+        Every enabled answer must have a corresponding question in each enabled question type.
+    </p>
+    <h3>choose setting for [texts/images/sounds] (#) is greater than the number of [text/image/sound] answers (#)</h3>
+    <p>
+        The choose setting for any given answer type must be less or equal to the amount of answers identifiers for the
+        answer type.
+    </p>
+    <h3>q is too [short/long], should have 3 switches</h3>
+    <p>
+       The q setting should have exactly 3 switches, i, a, t
+    </p>
+    <h3>a is too [short/long], should have 4 switches</h3>
+    <p>
+        the a setting should have exactly 4 switches, i, a, t, o
+    </p>
+    <h3>c is too [short/long], should have 3 digits</h3>
+    <p>
+       the c setting should have exactly 3 digits, i, a, t
+    </p>
+    <h3>c should have 3 digits, no other non-space characters</h3>
+    <p>
+        There is something on this line that is not a digit [2-9].
+    </p>
+
+    <h3>c should have 3 digits from 2 to 9</h3>
+    <p>
+        The digits 0 and 1 is are aloud if the the answer type is enabled.
+    </p>
+    <h3>[q/a/c/d] ([question/answer/choose/description]) missing</h3>
+    <p>
+        The q, a, c, and d setting must all be present.
+    </p>
+</div>
+<div class="doc">
+    <h2 class="mono">JavaScript</h2>
+    <p class="mono">
+        This site works entirely without javascript, but enabling it will make audio controls much more user friendly.
+        Don't worry, we don't have any trackers or fingerprinters. And no, you should not just trust a site when they
+        say that. We have just one <a class="mono" href="/audio.js" target="_blank">javascript file</a>, read it, its short!.
+    </p>
+</div>

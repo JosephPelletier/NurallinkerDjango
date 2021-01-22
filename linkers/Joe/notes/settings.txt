@@ -1,0 +1,28 @@
+# linker example
+# this is a comment, nurallinker will ignore lines starting with '#'
+# if you add any new lines they have to start with '#'
+# the only thing you should change in this example file is
+# swapping a + for - to disable an option on the option table
+
+# row q is question
+# row a is answer
+# row c is chose; the number of choices (2-9); ignored if the answer type
+#     is disabled, use 0 or - for readability if disabled
+# column i is image
+# column a is audio
+# column t is text
+# column o is open-ended
+# + is on - is off
+# if an answer type is disabled its value for row c should be 0
+#   for the sake of readability
+
+# i a t o
+q + + +
+a + + + +
+c 3 3 5
+
+# this next line is the description
+d Teaches the G-clef notes by sound, symbol, and name
+
+# check the docs and make sure you meat all of the requirements
+#    before submitting changes
